@@ -1,0 +1,25 @@
+{
+  "name": "bookstore-express",
+  "version": "1.0.0",
+  "description": "Backend Services provider for the Bookstore module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "book"
+  ],
+  "author": "Group of Four",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "method-override": "^2.3.8",
+    "mongoose": "^4.9.6",
+    "mongoose-sequence": "^3.2.0",
+    "mongoose-sequence-plugin": "^1.0.5",
+    "nodemon": "^1.11.0",
+    "should": "^11.2.1",
+    "supertest": "^3.0.0"
+  }
+}
