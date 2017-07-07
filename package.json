@@ -9,7 +9,7 @@
   "keywords": [
     "book"
   ],
-  "author": "Group of Four",
+  "author": "munsif aka emcube",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.1",
