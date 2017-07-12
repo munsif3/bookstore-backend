@@ -27,7 +27,7 @@ const BookSchema = new Schema({
     pages: {
         type: Number
     },
-    iamge_url: {
+    image_url: {
         type: String
     },
     buy_url: {
@@ -36,6 +36,9 @@ const BookSchema = new Schema({
     author: {
         type: Schema.Types.ObjectId,
         ref: 'Author'
+    },
+    genre:{
+        type: String
     }
 });
 

@@ -13,15 +13,20 @@ const app = express();
 require('./app/models/user.model');
 require('./app/models/author.model');
 require('./app/models/book.model');
+require('./app/models/genre.model');
 
 // Requiring Routers
 const BookStoreRouter = require('./app/routes/bookstore.route');
+const AuthorRouter = require('./app/routes/author.route');
+const GenreRouter = require('./app/routes/genre.route');
+const BookRouter = require('./app/routes/book.route');
+
 
 // Enabling CORS Support
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Access-Control-Allow-Headers", "GET,POST,PUT,DELETE");
+    res.header("Access-Control-Allow-Headers", "GET, POST, PUT, DELETE");
     next();
 });
 
@@ -54,7 +59,10 @@ app.get('/', (req, res) => {
 });
 
 // Returning other Requests
-app.use('/api/authors', BookStoreRouter);
+// app.use('/api/authors', BookStoreRouter);
+app.use('/api/authors', AuthorRouter);  
+app.use('/api/genres', GenreRouter);  
+app.use('/api/books', BookRouter);  
 
 // Create Server and Listen for Requests
 app.listen(port, err => {
