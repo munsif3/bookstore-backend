@@ -9,6 +9,7 @@ mongoose.set('debug', false);
 
 // Requiring the Schema
 const GenreModel = mongoose.model('Genre');
+const BookModel = mongoose.model('Book');
 
 // Creating the Express Router
 const Router = express.Router();
@@ -25,7 +26,7 @@ Router.get('/', (req, res) => {
 
 // Get by Id
 Router.get('/:id', (req, res) => {
-    GenreModel.findById(req.params.id).exec().then(genres => {
+    GenreModel.findById(req.params.id).populate('books').exec().then(genres => {
         res.json(genres);
     }).catch(err => {
         console.log(err);
@@ -37,13 +38,23 @@ Router.get('/:id', (req, res) => {
 Router.post('/', (req, res) => {
     const Genre = new GenreModel(req.body);
     Genre.save().then(genre => {
-        res.json(genre);
-        res.sendStatus(201);
+        res.send(genre);
     }).catch(err => {
         console.error(err);
         res.sendStatus(500);
     })
 });
+
+Router.delete('/:id', (res, req) => {
+    GenreModel.findByIdAndRemove(req.params.id).then((genre) => {
+        const genreIds = genre.books.map((genreId => genreId));
+        return BookModel.remove({_id: {$in: genreIds}});
+    }).catch(err => {
+        console.error(err);
+        res.sendStatus(500);
+    })
+});
+
 
 // Making the Router available
 module.exports = Router;

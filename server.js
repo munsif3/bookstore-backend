@@ -21,7 +21,6 @@ const AuthorRouter = require('./app/routes/author.route');
 const GenreRouter = require('./app/routes/genre.route');
 const BookRouter = require('./app/routes/book.route');
 
-
 // Enabling CORS Support
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");

@@ -11,7 +11,11 @@ const GenreSchema = new Schema({
     createDate: {
         type: Date,
         default: Date.now
-    }
+    },
+    books:[{
+        type:Schema.Types.ObjectId,
+        ref:'Book'
+    }]
 });
 
 const Genre = mongoose.model('Genre', GenreSchema);

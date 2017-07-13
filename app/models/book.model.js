@@ -38,7 +38,8 @@ const BookSchema = new Schema({
         ref: 'Author'
     },
     genre:{
-        type: String
+        type: Schema.Types.ObjectId,
+        ref:'Genre'
     }
 });
 
