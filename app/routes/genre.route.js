@@ -25,7 +25,7 @@ Router.get('/', (req, res) => {
 });
 
 // Get by Id
-Router.get('/:id', (req, res) => {
+Router.get('/:id/books', (req, res) => {
     GenreModel.findById(req.params.id).populate('books').exec().then(genres => {
         res.json(genres);
     }).catch(err => {
@@ -38,7 +38,8 @@ Router.get('/:id', (req, res) => {
 Router.post('/', (req, res) => {
     const Genre = new GenreModel(req.body);
     Genre.save().then(genre => {
-        res.send(genre);
+        res.json(genre);
+        res.sendStatus(201);
     }).catch(err => {
         console.error(err);
         res.sendStatus(500);

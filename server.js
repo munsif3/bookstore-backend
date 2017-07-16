@@ -58,7 +58,7 @@ app.get('/', (req, res) => {
 });
 
 // Returning other Requests
-// app.use('/api/authors', BookStoreRouter);
+app.use('/api/authors', BookStoreRouter);
 app.use('/api/authors', AuthorRouter);  
 app.use('/api/genres', GenreRouter);  
 app.use('/api/books', BookRouter);  

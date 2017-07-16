@@ -14,7 +14,8 @@ const AuthorSchema = new Schema({
     },
     dateOfBirth: {
         type: String
-    },
+    }
+    ,
     books: [{
         type: Schema.Types.ObjectId,
         ref: 'Book'

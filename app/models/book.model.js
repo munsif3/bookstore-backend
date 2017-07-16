@@ -27,12 +27,6 @@ const BookSchema = new Schema({
     pages: {
         type: Number
     },
-    image_url: {
-        type: String
-    },
-    buy_url: {
-        type: String
-    },
     author: {
         type: Schema.Types.ObjectId,
         ref: 'Author'

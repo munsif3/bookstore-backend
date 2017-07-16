@@ -34,7 +34,7 @@ Router.get('/:id', (req, res) => {
     })
 })
 
-// Post
+// Post author
 Router.post('/', (req, res) => {
     const Author = new AuthorModel(req.body);
     Author.save().then(author => {
@@ -47,6 +47,23 @@ Router.post('/', (req, res) => {
 });
 
 // Post a Book
+Router.post('/:id/books', (req, res) => {
+    let book = new BookModel(req.body);
+    const authorId = req.params.id;
+    book.author = authorId;
+    book.save().then(books => {
+        return AuthorModel.findByIdAndUpdate(authorId, { $push: { "books": books } });
+    }).then(() => {
+        return BookModel.findById(authorId).populate("books").exec;
+    }).then(authors => {
+        res.json(authors);
+    }).catch(err => {
+        console.error(err);
+        res.sendStatus(500);
+    });
+});
+
+// Post a Book,author and genre
 Router.post('/:id/books', (req, res) => {
     let book = new BookModel(req.body);
     const authorId = req.params.id;
